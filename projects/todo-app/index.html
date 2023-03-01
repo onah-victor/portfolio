@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Javascript Project - To Do List Application">
+  <meta name="og:title" content="Onah Victor | Projects | To Do List Application">
+  <meta name="og:description" content="Hi I'm Victor. I can create a website design that will give value to your business">
+  <meta name="og:image" content="../../resources/images/todo_img.webp">
+  <title>JavaScript Practice - ToDo App</title>
+  <link rel="stylesheet" href="styles/todo.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+</head>
+<body>
+  <div id="app">
+    <div id="header">
+      <h3 id="title">
+        My To Do App
+      </h3>
+    </div>
+    <div id="main">
+      <form id="form">
+        <input id="task" name="task" type="text" placeholder="Add a task">
+        <input type="submit" id="add_btn" value="Add">
+      </form>
+      <div id="records">
+        <div class="tasks_record">
+          <p>Total tasks: </p><span id="total">0</span>
+        </div>
+        <div class="tasks_record">
+          <p>Completed tasks: </p><span id="done">0</span>
+        </div>
+        <div class="tasks_record">
+          <p>Remaining tasks: </p><span id="remaining">0</span>
+        </div>
+      </div>
+      <div id="tasks_list">
+      </div>
+      <button id="clear_btn">
+        Clear tasks
+      </button>
+    </div>
+  </div>
+  <script src="scripts/todo.js">
+  </script>
+</body>
+</html>

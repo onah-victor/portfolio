@@ -1,0 +1,320 @@
+*{
+  font-family: Montserrat;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color: inherit
+}
+a:visited{
+  color: inherit;
+  text-decoration: none
+}
+@media only screen and (max-width: 600px) {
+  body{
+    background: #222
+  }
+  header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    overflow-x: hidden;
+    background: inherit
+  }
+  #logo{
+    display: flex;
+    padding: 5px 15px;
+    align-items: center;
+    justify-content: center;
+    background: darkred;
+    font-weight: 900;
+    color: white;
+    height: fit-content;
+    border-radius: 3px
+  }
+  #menubar{
+    color: white;
+    padding: 10px;
+    border-radius: 3px;
+    z-index: 1000
+  }
+  #menubar:hover{
+    background: orangered;
+    outline: 1px solid white;
+    outline-offset: 2px
+  }
+  #menubar:active{
+    background: darkred
+  }
+  #menu_items{
+    position: absolute;
+    background: #aaa5;
+    color: white;
+    backdrop-filter: blur(10px);
+    right: 10px;
+    top: 75px;
+    width: 0;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3), inset 0 0 2px black;
+    transition: 0.2s linear all;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 10px;
+    border-radius: 5px;
+    overflow: hidden
+  }
+  #menu_items.visible{
+    width: 170px;
+  }
+  .menu_item{
+    padding: 10px 20px;
+    white-space: nowrap;
+    font: 800 14px Montserrat
+  }
+  .menu_item:hover{
+    background: #555
+  }
+  #container{
+    position: static;
+    z-index: 1
+  }
+  #intro{
+    height: 450px;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../resources/images/bg_img.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    font: 1000 20px Montserrat
+  }
+  #styled_name{
+    background: darkred;
+    border-radius: 3px;
+    padding: 5px 15px
+  }
+  #intro p{
+    margin-bottom: 20px
+  }
+  #stacks{
+    background: #222
+  }
+  .styled_header{
+    background: darkred;
+    color: white;
+    text-align: center;
+    text-shadow: 0 -2px 2px black;
+    font-size: 16px;
+    padding: 5px 0;
+    margin-bottom: 30px
+  }
+  .stack{
+    margin: 30px auto;
+    background: #111;
+    border-radius: 4px;
+    max-width: 350px;
+    color: white
+  }
+  .stack:first-child .stack_name{
+    padding: 10px;
+    text-align: center;
+    background: orangered;
+    text-shadow: 0 -2px 2px black
+  }
+  .stack:last-child .stack_name{
+    padding: 10px;
+    text-align: center;
+    background: yellow;
+    text-shadow: 0 -2px 2px black;
+    color: black
+  }
+  .stack:nth-child(2) .stack_name{
+    padding: 10px;
+    text-align: center;
+    background: blue;
+    text-shadow: 0 -2px 2px black
+  }
+  
+  .stack img{
+    width: 100px;
+    display: block;
+    margin: 5px auto
+  }
+  .stack_detail{
+    background: #555;
+    text-align: center;
+    padding: 10px
+  }
+  .project{
+    margin: 20px auto;
+    max-width: 300px;
+  }
+  .project_img{
+    height: 250px;
+    overflow: hidden
+  }
+  .project_img img{
+    width: 100%;
+    display: block
+  }
+  .project_name{
+    padding: 15px;
+    text-align: center;
+    font-weight: 900;
+    color: white;
+    background: #777
+  }
+}
+@media only screen and (min-width: 601px) and (max-width: 960px) {
+  html{
+    background: #888;
+    padding: 0;
+  }
+  body{
+    max-width: 1024px;
+    margin: auto;
+    min-height: 100vh;
+    background: #222
+  }
+  header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+  }
+  #logo{
+    display: flex;
+    padding: 5px 15px;
+    align-items: center;
+    justify-content: center;
+    background: darkred;
+    font-weight: 900;
+    color: white;
+    height: fit-content;
+    border-radius: 3px
+  }
+  #menubar{
+    display: none
+  }
+  #menu_items{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+    width: fit-content;
+    color: white
+  }
+  .menu_item{
+    padding: 7px 10px;
+    font: 900 14px Montserrat
+  }
+  .menu_item:hover{
+    outline: 1px solid white;
+    outline-offset: 2px
+  }
+  .menu_item:active{
+    background: orangered;
+    color: white
+  }
+  #intro{
+    height: 300px;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../resources/images/bg_img.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px 30px 20px ;
+    font: 1000 24px Montserrat
+  }
+  #styled_name{
+    background: darkred;
+    border-radius: 3px;
+    padding: 5px 15px
+  }
+  #intro p{
+    margin-bottom: 20px
+  }
+  #stacks, #projects{
+    background: #222;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center
+  }
+  .styled_header{
+    background: darkred;
+    color: white;
+    text-align: center;
+    text-shadow: 0 -2px 2px black;
+    font-size: 16px;
+    padding: 5px 0;
+    margin-bottom: 30px
+  }
+  .stack{
+    margin: 30px auto;
+    background: #111;
+    border-radius: 4px;
+    width: 300px;
+    color: white
+  }
+  .stack:first-child .stack_name{
+    padding: 10px;
+    text-align: center;
+    background: orangered;
+    text-shadow: 0 -2px 2px black
+  }
+  .stack:last-child .stack_name{
+    padding: 10px;
+    text-align: center;
+    background: yellow;
+    text-shadow: 0 -2px 2px black;
+    color: black
+  }
+  .stack:nth-child(2) .stack_name{
+    padding: 10px;
+    text-align: center;
+    background: blue;
+    text-shadow: 0 -2px 2px black
+  }
+  .stack img{
+    width: 100px;
+    display: block;
+    margin: 5px auto
+  }
+  .stack_detail{
+    background: #555;
+    text-align: center;
+    padding: 10px
+  }
+  .project{
+    margin: 20px auto;
+    width: 300px;
+  }
+  .project_img{
+    height: 250px;
+    overflow: hidden
+  }
+  .project_img img{
+    width: 100%;
+    display: block
+  }
+  .project_name{
+    padding: 15px;
+    text-align: center;
+    font-weight: 900;
+    color: white;
+    background: #777
+  }
+}
+

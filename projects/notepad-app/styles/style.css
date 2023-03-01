@@ -1,0 +1,210 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Montserrat
+}
+html{
+  background: #777;
+  padding: 0
+}
+body{
+  max-width: 600px;
+  min-height: 100vh;
+  margin: auto;
+  background: #222;
+  color: white
+}
+a, a:link, a:active, a:hover{
+  color: inherit;
+  text-decoration: none;
+}
+button:link{
+  background: darkred
+}
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  background: #111;
+  box-shadow: 0 2px 5px black;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10 !important
+}
+#app_title{
+  font-weight: 1000;
+  color: orangered;
+}
+#home_searchbox_add{
+  display: grid;
+  color: orangered;
+  grid-template-columns: 25px 25px;
+  gap: 30px;
+  padding: 0 15px
+}
+main{
+  position: relative;
+  background: inherit;
+  min-height: 100vh;
+  overflow: scroll
+}
+.hidden_view{
+  display: none
+}
+#notes_list,
+#note_editor,
+#note_viewer,
+#note_search{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #222;
+  opacity: 1;
+  z-index: 3 !important
+}
+#note_search #header, #note_editor #header{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  padding: 15px
+}
+#search{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border: 1px solid orangered;
+  border-radius: 50px;
+  padding: 10px
+}
+#searchbox{
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  background: transparent;
+  font-size: 16px;
+  color: white;
+  vertical-align: middle
+}
+#searcbox::placeholder{
+  color: gainsboro;
+  font-size: 16px;
+}
+#searchbox:focus{
+  outline: none;
+  background: transparent;
+  text-decoration: none
+}
+#search i{
+  height: 4px;
+  color: orangered;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  display: none
+}
+#searchbox:focus+i{
+  display: flex
+}
+#note_search_back_btn, #note_editor_back_btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: orangered;
+  color: white;
+  padding: 15px;
+  height: 15px;
+  border-radius: 3px;
+  margin: auto auto;
+}
+#note_search_back_btn:active, #done, #save, #note_editor_back_btn:active{
+  background: darkred;
+}
+#note_editor #header{
+  background: orangered;
+  border-bottom: 1px solid black;
+  padding: 0 10px
+}
+#note_editor h3, #notes_list h3{
+  padding: 10px;
+  background: orangered;
+  color: antiquewhite;
+  text-align: center
+}
+#note_title{
+  text-align: center;
+  padding: 15px;
+  font-size: 20px;
+  background: #333;
+  border-radius: 10px;
+  margin: 10px;
+  text-transform: capitalize
+}
+#new_note_title{
+  display: grid;
+  grid-template-columns: auto 1fr 60px;
+  background: black;
+  margin-bottom: 30px;
+}
+#new_note_title input{
+  border: none;
+  background: transparent;
+  outline: none;
+  text-transform: capitalize;
+  padding: 10px;
+  font-size: 16px;
+  color: white
+}
+#new_note_title p{
+  padding: 5px 7px;
+  margin: auto auto
+}
+#new_note_title button{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: orangered;
+  color: white;
+  border: none;
+}
+#new_note_title input:focus{
+  outline: 1px solid orangered
+}
+#note{
+  height: 300px;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px;
+  border-radius: 10px;
+  background: #333;
+  overflow: scroll
+}
+#note:focus{
+  border: 1px solid orangered;
+  outline: none
+}
+#done_save_btns{
+  display: flex;
+  justify-content: center
+}
+button#done, button#save{
+  padding: 15px 0;
+  background: orangered;
+  color: white;
+  border: none;
+  margin: 30px auto;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 900;
+  width: 200px;
+  text-align: center
+}
+button#done:active, button#save:active, #new_note_title button:active{
+  background: darkred
+}

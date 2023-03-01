@@ -1,0 +1,151 @@
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    font-family: Montserrat
+  }
+  html{
+    background: white;
+    padding: 0;
+    margin: 0;
+  }
+  body{
+    background: white;
+    max-width: 600px;
+    box-shadow: 0 0 5px #a1a1a1;
+    margin: auto;
+    padding: 15px;
+    min-height: 100vh;
+  }
+  #title{
+    font: 600 20px Montserrat;
+    color: rgba(0,0,0,0.8);
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+    margin-top: 30px;
+    margin-bottom: 30px
+  }
+  #form{
+    display: grid;
+    grid-template-columns: 300px auto;
+    width: fit-content;
+    border: 1px solid transparent;
+    background: black;
+    -moz-background-clip: border;
+    -webkit-background-clip: border;
+    background-clip: border;
+    margin: auto
+  }
+  #task{
+    border: 0;
+    padding: 10px;
+    background: white;
+    font: 400 14px Montserrat;
+    color: black
+  }
+  #task::placeholder{
+    color: gray
+  }
+  #task:focus{
+    outline: none
+  }
+  #add_btn{
+    padding: 10px;
+    font: 400 14px Montserrat;
+    color: white;
+    transition: 0.4s linear all;
+    background: transparent;
+    border: none
+  }
+  #add_btn:hover{
+    background: darkred
+  }
+  #add_btn:active{
+    color: white;
+    font-weight: 600;
+  }
+  #records{
+    background: white;
+    overflow: hidden;
+    font: 800 16px Montserrat;
+    width: fit-content;
+    margin: 20px auto;
+    border-radius: 5px;
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.2), 0px 0px 15px rgba(0,0,0,0.1)
+  }
+  #records .tasks_record{
+    display: grid;
+    width: auto;
+    padding: 10px;
+    grid-template-columns: 1fr auto;
+    border-bottom: 1px solid grey;
+  }
+  .tasks_record:last-child{
+    border-bottom: none !important
+  }
+  #records .tasks_record span{
+    width: fit-content;
+    color: black;
+    padding: 10px 10px;
+    text-align: right
+  }
+  #records .tasks_record p{
+    padding: 10px;
+    white-space: nowrap
+  }
+  #tasks_list{
+    background: white;
+    margin: 15px;
+    min-height: 120px
+  }
+  .task{
+    display: grid;
+    grid-template-columns: auto 70% auto;
+    padding: 10px;
+    border-bottom: 1px solid blue;
+    gap: 10px
+  }
+  .task:hover{
+    background: #e3e3f1
+  }
+  .task:active{
+    background: #c2c2d4
+  }
+  .task p{
+    font: 600 14px Montserrat;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: clip
+  }
+  .task input{
+    transform: translateY(9px);
+    accent-color: purple;
+  }
+  .task span{
+    font: 800 10px Montserrat;
+    color: white;
+    background: red;
+    max-width: 55px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px
+  }
+  .task span:hover{
+    background: purple;
+  }
+  button{
+    background: red;
+    padding: 10px 20px;
+    display: block;
+    margin: 30px auto;
+    width: fit-content;
+    color: white;
+    font: 400 16px Montserrat;
+    border-radius: 3px;
+    border: none;
+  }
+  button:active{
+    background: purple
+  }

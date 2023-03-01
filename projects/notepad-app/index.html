@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Javascript Project - Note Pad Application">
+  <meta name="og:title" content="Onah Victor | Projects | Note Pad Application">
+  <meta name="og:description" content="Hi I'm Victor. I can create a website design that will give value to your business">
+  <meta name="og:image" content="../../resources/images/notepad_img.jpg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <script src="https://kit.fontawesome.com/e72bc649c0.js" crossorigin="anonymous"></script>
+  <title>JavaScript Project - Note Pad</title>
+</head>
+<body>
+  <header>
+    <div id="app_title">My Note Pad</div>
+    <div id="home_searchbox_add">
+      <a href="#note_search" id="search_btn"><i class="fa fa-search"></i></a>
+      <a href="#note_editor" id="add_btn"><i class="fa fa-plus"></i></a>
+    </div>
+  </header>
+  <main id="app_container">
+    <div class="view" id="notes_list">
+      <h3>Notes</h3>
+      <div id="notes">
+        
+      </div>
+    </div>
+    <div class="view hidden_view" id="note_editor">
+      <div id="header">
+        <i id="note_editor_back_btn" title="Back" class="fa fa-angle-left"></i>
+        <h3>New Note</h3>
+      </div>
+      <h1 id="note_title"></h1>
+      <form id="new_note_title">
+        <p>Title:</p>
+        <input type="text" id="note_title_input" required placeholder="Enter note title">
+        <button>Done</button>
+      </form>
+      <div id="note" placeholder="New note" contenteditable="true">
+      </div>
+      <div id="done_save_btns">
+        <button id="done">Done</button>
+      </div>
+    </div>
+    <div class="view hidden_view" id="note_search">
+      <div id="header">
+        <i id="note_search_back_btn" title="Back" class="fa fa-angle-left"></i>
+        <form id="search">
+          <input type="text" placeholder="Search for notes" id="searchbox" name="searchbox">
+          <i class="fa fa-close"></i>
+        </form>
+      </div>
+    </div>
+  </main>
+  <script src="scripts/notepad.js"></script>
+</body>
+</html>
