@@ -106,7 +106,7 @@ get('note_editor_back_btn').addEventListener('click', () => history.back())
 get('note_search_back_btn').addEventListener('click', () => history.back())
 get('done').addEventListener('click', saveNote)
 addEventListener('load', () => {
-    if (location.href) {
+    if (location.hash) {
         location.hash = ''
     }
 })
