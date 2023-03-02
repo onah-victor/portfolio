@@ -41,7 +41,7 @@ const createNewNote = (title, content) => {
 }
 const saveNote = () => {
     let title = get('note_title').textContent.trim()
-    let content = get('note').textContent.trim()
+    let content = get('note').value.trim()
     if (title == '') {
         history.back()
     } else {
@@ -88,7 +88,7 @@ const getNotes = notes => {
         let htmlFragment = `
         <div class="note" id="${note.id}">
           <div class="note_title">${note.title}</div>
-          <div class="note_content">${note.content}</div>
+          <div class="note_content">${note.content.slice(0, 30)}</div>
           <div class="date_time">
             <p>Created on <span>${note.dateCreated}</span>. <span>${note.timeCreated}</span></p>
           </div>
@@ -100,7 +100,7 @@ const getNotes = notes => {
 }
 const toggleViewsOnHashChange = (event) => {
     event.preventDefault()
-    if (location.hash != '') {
+    if (location.hash) {
         let hashFragment = location.hash
         switch (hashFragment) {
             case ('#note_editor'):
@@ -162,6 +162,13 @@ addEventListener('hashchange', toggleViewsOnHashChange)
 get('note_editor_back_btn').addEventListener('click', () => history.back())
 get('note_search_back_btn').addEventListener('click', () => history.back())
 get('done').addEventListener('click', saveNote)
+get('note').addEventListener('keypress', event => {
+    if (event.key == 'Enter') {
+        let noteInput = get('note')
+        noteInput.value += `\n`
+    }
+    return
+})
 addEventListener('load', () => {
     if (location.hash) {
         location.hash = ''
