@@ -23,18 +23,21 @@ const createNewNote = (title, content) => {
     monthDay = date.getDate()
     month = months[date.getMonth()]
     year = date.getFullYear()
-    let dateCreated = `${day} ${monthDay}, ${year}`
-    let timeCreated = `${date.getHours()} : ${date.geMinutes}`
-    let id = date.getTime()
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+    let amPm
+    if (hours >= 12) {
+        amPm = 'PM'
+    } else {
+        amPm = 'AM'
+    }
+    let formattedDateTime = formatDateTime(minutes, hours, monthDay)
+    let dateCreated = `${day} ${formattedDateTime.day} ${month}, ${year}`
+    let timeCreated = `${formattedDateTime.hours} : ${formattedDateTime.minutes} ${amPm}`
+    let id = date.getTime() + date.getMilliseconds()
     let note = new Note(title, content, dateCreated, timeCreated, id, false)
     notes.push(note)
-    let HTMLNoteFragment = `
-    <div class="note" id="${id}">
-      <div class="note_title">${title}</div>
-      <div class="note_title">${content.substring(17)}...</div>
-    </div>
-    `
-    get('notes').insertAdjacentHTML('beforeend', HTMLNoteFragment)
+    getNotes(notes)
 }
 const saveNote = () => {
     let title = get('note_title').textContent.trim()
@@ -43,6 +46,9 @@ const saveNote = () => {
         history.back()
     } else {
         createNewNote(title, content)
+        get('note_title_input').value = ''
+        get('new_note_title').style.display = 'grid'
+        get('note').textContent = ''
         history.back()
     }
     console.log(notes.length)
@@ -76,6 +82,22 @@ const saveNoteTitle = (event) => {
     get('note').focus()
     return false
 }
+const getNotes = notes => {
+    get('notes').innerHTML = ''
+    for (let note of notes) {
+        let htmlFragment = `
+        <div class="note" id="${note.id}">
+          <div class="note_title">${note.title}</div>
+          <div class="note_content">${note.content}</div>
+          <div class="date_time">
+            <p>Created on <span>${note.dateCreated}</span>. <span>${note.timeCreated}</span></p>
+          </div>
+        </div>
+        `
+        console.log(htmlFragment)
+        get('notes').insertAdjacentHTML('afterbegin', htmlFragment)
+    }
+}
 const toggleViewsOnHashChange = (event) => {
     event.preventDefault()
     if (location.hash != '') {
@@ -98,6 +120,41 @@ const toggleViewsOnHashChange = (event) => {
         showNotesList()
         document.body.children[0].style.display = 'flex'
     }
+}
+const formatDateTime = (minutes, hours, day) => {
+    minutes = Number(minutes)
+    hours = Number(hours)
+    if (minutes < 10) {
+        minutes = '0'+minutes;
+    } else {
+        minutes = minutes
+    }
+    switch (true) {
+        case (hours == 0):
+        hours = 12
+        break
+        case (hours > 12):
+        hours = hours - 12
+        break
+        default:
+        hours = hours
+        break
+    }
+    day = String(day)
+    switch (true) {
+        case (day.endsWith(1)):
+        day = day + 'st'
+        break
+        case (day.endsWith(2)):
+        day = day + 'nd'
+        break
+        case (day.endsWith(3)):
+        day = day + 'rd'
+        break
+        default:
+        day = day + 'th'
+    }
+    return {minutes, hours, day}
 }
 get('note_title_input').addEventListener('keyup', updateNoteTitle)
 document.forms['new_note_title'].addEventListener('submit', saveNoteTitle)

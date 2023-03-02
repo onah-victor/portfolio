@@ -208,3 +208,22 @@ button#done, button#save{
 button#done:active, button#save:active, #new_note_title button:active{
   background: darkred
 }
+.note{
+  background: #333;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px
+}
+.note_title{
+  font-size: 20px;
+  font-weight: 600;
+}
+.note_content{
+  font-weight: 400;
+  font-size: 14px;
+}
+.date_time{
+  font-size: 8px;
+  color: silver;
+  font-style: italic
+}
