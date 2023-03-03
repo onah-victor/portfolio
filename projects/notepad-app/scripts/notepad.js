@@ -2,6 +2,7 @@ const get = document.getElementById.bind(document)
 const noteEditor = get('note_editor')
 const notesList = get('notes_list')
 const noteSearch = get('note_search')
+const noteViewer = get('note_viewer')
 const views = document.getElementsByClassName('view')
 class Note{
     constructor(title, content, dateCreated, timeCreated, id, edited) {
@@ -67,6 +68,12 @@ const showNoteSearch = () => {
     noteSearch.classList.remove('hidden_view')
     get('searchbox').focus()
 }
+const showNoteViewer = () => {
+    for (let view of views) {
+        if (!(view.classList.contains('hidden_view'))) view.classList.add('hidden_view')
+    }
+    noteViewer.classList.remove('hidden_view')
+}
 const showNotesList = () => {
     for (let view of views) {
         if (!(view.classList.contains('hidden_view'))) view.classList.add('hidden_view')
@@ -86,13 +93,13 @@ const getNotes = notes => {
     get('notes').innerHTML = ''
     for (let note of notes) {
         let htmlFragment = `
-        <div class="note" id="${note.id}">
+        <a href="#note_viewer" onclick="viewNote(event)" class="note" id="${note.id}">
           <div class="note_title">${note.title}</div>
           <div class="note_content">${note.content.slice(0, 30)}</div>
           <div class="date_time">
             <p>Created on <span>${note.dateCreated}</span>. <span>${note.timeCreated}</span></p>
           </div>
-        </div>
+        </a>
         `
         console.log(htmlFragment)
         get('notes').insertAdjacentHTML('afterbegin', htmlFragment)
@@ -109,6 +116,10 @@ const toggleViewsOnHashChange = (event) => {
             break
             case ('#note_search'):
             showNoteSearch()
+            document.body.children[0].style.display = 'none'
+            break
+            case ('#note_viewer'):
+            showNoteViewer()
             document.body.children[0].style.display = 'none'
             break
             default:
@@ -156,11 +167,21 @@ const formatDateTime = (minutes, hours, day) => {
     }
     return {minutes, hours, day}
 }
+const viewNote = event => {
+    let el = event.currentTarget
+    for (let note of notes) {
+        if (note.id == el.id) {
+            get('note_viewer_title').textContent = note.title
+            get('note_viewer_content').textContent = note.content
+        }
+    }
+}
 get('note_title_input').addEventListener('keyup', updateNoteTitle)
 document.forms['new_note_title'].addEventListener('submit', saveNoteTitle)
 addEventListener('hashchange', toggleViewsOnHashChange)
 get('note_editor_back_btn').addEventListener('click', () => history.back())
 get('note_search_back_btn').addEventListener('click', () => history.back())
+get('note_viewer_back_btn').addEventListener('click', () => history.back())
 get('done').addEventListener('click', saveNote)
 get('note').addEventListener('keypress', event => {
     if (event.key == 'Enter') {

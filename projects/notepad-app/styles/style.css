@@ -68,7 +68,7 @@ main{
   opacity: 1;
   z-index: 3 !important
 }
-#note_search #header, #note_editor #header{
+#note_search #header, #note_editor #header, #note_viewer #header{
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 10px;
@@ -110,7 +110,9 @@ main{
 #searchbox:focus+i{
   display: flex
 }
-#note_search_back_btn, #note_editor_back_btn{
+#note_search_back_btn,
+#note_editor_back_btn,
+#note_viewer_back_btn{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,21 +123,28 @@ main{
   border-radius: 3px;
   margin: auto auto;
 }
-#note_search_back_btn:active, #done, #save, #note_editor_back_btn:active{
+#note_search_back_btn:active,
+#done,
+#save,
+#note_editor_back_btn:active,
+#note_viewer_back_btn:active{
   background: darkred;
 }
-#note_editor #header{
+#note_editor #header,
+#note_viewer #header{
   background: orangered;
   border-bottom: 1px solid black;
   padding: 0 10px
 }
-#note_editor h3, #notes_list h3{
+#note_editor h3,
+#notes_list h3, 
+#note_viewer h3{
   padding: 10px;
   background: orangered;
   color: antiquewhite;
   text-align: center
 }
-#note_title{
+#note_title, #note_viewer_title{
   text-align: center;
   padding: 15px;
   font-size: 20px;
@@ -194,6 +203,16 @@ main{
   border: 1px solid orangered;
   outline: none
 }
+#note_viewer_content{
+  margin: 10px auto;
+  color: white;
+  font-size: 16px;
+  white-space: pre-wrap;
+  min-height: 450px;
+  padding: 15px;
+  background: #333;
+  border: 1px solid gray
+}
 #done_save_btns{
   display: flex;
   justify-content: center
@@ -215,6 +234,7 @@ button#done:active, button#save:active, #new_note_title button:active{
 }
 .note{
   background: #333;
+  display: block;
   border-radius: 5px;
   padding: 10px;
   margin: 10px

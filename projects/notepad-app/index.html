@@ -22,12 +22,16 @@
     </div>
   </header>
   <main id="app_container">
+    
+    
     <div class="view" id="notes_list">
       <h3>Notes</h3>
       <div id="notes">
         
       </div>
-    </div>
+    </div><!-- Notes list -->
+    
+    
     <div class="view hidden_view" id="note_editor">
       <div id="header">
         <i id="note_editor_back_btn" title="Back" class="fa fa-angle-left"></i>
@@ -43,7 +47,25 @@
       <div id="done_save_btns">
         <button id="done">Done</button>
       </div>
-    </div>
+    </div><!-- Note editor -->
+    
+    
+    
+    <div class="hidden_view view" id="note_viewer">
+      <div id="header">
+        <i id="note_viewer_back_btn" title="Back" class="fa fa-angle-left"></i>
+        <h3>Note Viewer</h3>
+      </div>
+      <div id="note_viewer_title">
+        
+      </div>
+      <div id="note_viewer_content">
+        
+      </div>
+    </div><!-- Note viewer -->
+    
+    
+    
     <div class="view hidden_view" id="note_search">
       <div id="header">
         <i id="note_search_back_btn" title="Back" class="fa fa-angle-left"></i>
@@ -52,7 +74,9 @@
           <i class="fa fa-close"></i>
         </form>
       </div>
-    </div>
+    </div><!-- Note search -->
+    
+    
   </main>
   <script src="scripts/notepad.js"></script>
 </body>
