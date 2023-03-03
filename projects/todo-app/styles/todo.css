@@ -120,8 +120,7 @@
     overflow: clip
   }
   .task input{
-    transform: translateY(9px);
-    accent-color: purple;
+    accent-color: black;
   }
   .task span{
     font: 800 10px Montserrat;
