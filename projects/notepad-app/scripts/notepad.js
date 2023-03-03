@@ -48,7 +48,7 @@ const saveNote = () => {
         createNewNote(title, content)
         get('note_title_input').value = ''
         get('new_note_title').style.display = 'grid'
-        get('note').textContent = ''
+        get('note').value = ''
         history.back()
     }
     console.log(notes.length)
