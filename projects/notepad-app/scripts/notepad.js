@@ -14,7 +14,8 @@ class Note{
         this.edited = false
     }
 }
-const notes = []
+window.notes = []
+let notes = window.notes
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 const months = ['January', 'February','March','April','May','June','July','August','September','October','November','December']
 const createNewNote = (title, content) => {
@@ -91,18 +92,21 @@ const saveNoteTitle = (event) => {
 }
 const getNotes = notes => {
     get('notes').innerHTML = ''
-    for (let note of notes) {
-        let htmlFragment = `
-        <a href="#note_viewer" onclick="viewNote(event)" class="note" id="${note.id}">
-          <div class="note_title">${note.title}</div>
-          <div class="note_content">${note.content.slice(0, 30)}</div>
-          <div class="date_time">
-            <p>Created on <span>${note.dateCreated}</span>. <span>${note.timeCreated}</span></p>
-          </div>
-        </a>
-        `
-        console.log(htmlFragment)
-        get('notes').insertAdjacentHTML('afterbegin', htmlFragment)
+    if (notes.length >= 1) {
+       for (let note of notes) {
+           let htmlFragment = `
+           <a href="#note_viewer" onclick="viewNote(event)" class="note" id="${note.id}">
+           <div class="note_title">${note.title}</div>
+           <div class="note_content">${note.content.slice(0, 30)}</div>
+           <div class="date_time">
+           <p>Created on <span>${note.dateCreated}</span>. <span>${note.timeCreated}</span></p>
+           </div>
+           </a>
+           `
+           get('notes').insertAdjacentHTML('afterbegin', htmlFragment)
+       }
+    } else {
+        console.error('An error occured!')
     }
 }
 const toggleViewsOnHashChange = (event) => {
@@ -172,9 +176,20 @@ const viewNote = event => {
     for (let note of notes) {
         if (note.id == el.id) {
             get('note_viewer_title').textContent = note.title
+            get('note_viewer_title').dataset.id = el.id
             get('note_viewer_content').textContent = note.content
+            console.log(get('note_viewer').outerHTML)
         }
     }
+}
+const deleteNote = () => {
+    notes = notes.filter(filterNotes)
+    getNotes(notes)
+    history.back()
+}
+const filterNotes = item => {
+    let noteId = get('note_viewer_title').dataset.id
+    if (item.id != noteId) return item
 }
 get('note_title_input').addEventListener('keyup', updateNoteTitle)
 document.forms['new_note_title'].addEventListener('submit', saveNoteTitle)
@@ -195,3 +210,4 @@ addEventListener('load', () => {
         location.hash = ''
     }
 })
+get('delete_note').addEventListener('click', deleteNote)
