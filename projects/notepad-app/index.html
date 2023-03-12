@@ -2,86 +2,106 @@
 
 <html>
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Javascript Project - Note Pad Application">
-  <meta name="og:title" content="Onah Victor | Projects | Note Pad Application">
-  <meta name="og:description" content="JavaScript Project - Note Pad Application">
-  <meta name="og:image" content="../../resources/images/notepad_img.jpg">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
-  <link rel="stylesheet" href="styles/style.css"/>
-  <script src="https://kit.fontawesome.com/e72bc649c0.js" crossorigin="anonymous"></script>
-  <title>JavaScript Project - Note Pad</title>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/style.css"/>
+    <link href="./fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="./fontawesome/css/brands.css" rel="stylesheet">
+    <link href="./fontawesome/css/solid.css" rel="stylesheet">
+    <title>Note Pad</title>
 </head>
 <body>
-  <header>
-    <div id="app_title">My Note Pad</div>
-    <div id="home_searchbox_add">
-      <a href="#note_search" id="search_btn"><i class="fa fa-search"></i></a>
-      <a href="#note_editor" id="add_btn"><i class="fa fa-plus"></i></a>
-    </div>
-  </header>
-  <main id="app_container">
-    
-    
-    <div class="view" id="notes_list">
-      <h3>Notes</h3>
-      <div id="notes">
-        
-      </div>
-    </div><!-- Notes list -->
-    
-    
-    <div class="view hidden_view" id="note_editor">
-      <div id="header">
-        <i id="note_editor_back_btn" title="Back" class="fa fa-angle-left"></i>
-        <h3>New Note</h3>
-      </div>
-      <h1 id="note_title"></h1>
-      <form id="new_note_title">
-        <p>Title:</p>
-        <input type="text" id="note_title_input" required placeholder="Enter note title">
-        <button>Done</button>
-      </form>
-      <textarea id="note"></textarea>
-      <div id="done_save_btns">
-        <button id="done">Done</button>
-      </div>
-    </div><!-- Note editor -->
-    
-    
-    
-    <div class="hidden_view view" id="note_viewer">
-      <div id="header">
-        <i id="note_viewer_back_btn" title="Back" class="fa fa-angle-left"></i>
-        <h3>Note Viewer</h3>
-        <div id="edit_delete">
-          <i title="Edit" id="edit_note" class="fa fa-pencil"></i>
-          <i title="Delete" id="delete_note" class="fa fa-trash-can"></i>
+    <header>
+        <div id="note-title">
+            Note Pad
         </div>
-      </div>
-      <div data-id="" id="note_viewer_title">
+        <div id="menu-icons">
+            <a href="#note-search">
+                <button id="search-btn">
+                    <i title="Search notes" class="fa fa-search"></i>
+                </button>
+            </a>
+            <a href="#note-editor">
+                <button class="add-btn">
+                    <i title="Add a note" class="fa fa-plus"></i>
+                </button>
+            </a>
+        </div>
+    </header>
+    <main>
+        <!-- Notes list start -->
+        <div id="notes-list" class="view flexed">
+            <div id="intro">
+                No notes to show. <br>
+                Press the + button to add a new note.
+            </div>
+            <a href="#note-editor" id="add-btn-link">
+                <button class="add-btn" title="Add a note">
+                    <i title="Add new note" class="fa fa-plus"></i>
+                </button>
+            </a>
+        </div>
+        <!-- Notes list end -->
         
-      </div>
-      <div id="note_viewer_content">
+        <!-- Note viewer start -->
+        <div id="note-viewer" class="view hidden">
+            <div class="view-header">
+                <i title="Back" class="fa fa-angle-left back-btn"></i>
+                <h3 class="view-title">
+                    Note Viewer
+                </h3>
+                <div id="menu-icons">
+                    <i title="Edit note" class="fa fa-edit"></i>
+                    <i title="Delete note" class="fa fa-trash"></i>
+                </div>
+            </div>
+            <h3 id="note-viewer-title" data-id="">
+                
+            </h3>
+            <div id="note-viewer-content">
+                
+            </div>
+        </div>
+        <!-- Note viewer end -->
         
-      </div>
-    </div><!-- Note viewer -->
-    
-    
-    
-    <div class="view hidden_view" id="note_search">
-      <div id="header">
-        <i id="note_search_back_btn" title="Back" class="fa fa-angle-left"></i>
-        <form id="search">
-          <input type="text" placeholder="Search for notes" id="searchbox" name="searchbox">
-          <i class="fa fa-close"></i>
-        </form>
-      </div>
-    </div><!-- Note search -->
-    
-    
-  </main>
-  <script src="scripts/notepad.js"></script>
+        <!-- Note editor start -->
+        <div id="note-editor" class="view hidden">
+            <div class="view-header">
+                <i class="fa fa-angle-left back-btn"></i>
+                <h3>
+                    Note Editor
+                </h3>
+            </div>
+            <h3 id="new-note-title">
+                
+            </h3>
+            <form id="note-title-input">
+                <p>Title: </p>
+                <input type="text" placeholder="Enter note title" id="new-note-title-input">
+                <input type="submit" value="Done" id="new-note-title-save-btn">
+            </form>
+            <textarea id="new-note-content"></textarea>
+            <button id="note-save-btn">Done</button>
+        </div>
+        <!-- Note editor end -->
+        
+        <!-- Note search start -->
+        <div id="note-search" class="view hidden">
+            <div class="view-header">
+                <i class="fa fa-angle-left back-btn"></i>
+                <form id="search-form">
+                    <input type="search" id="search-box" placeholder="Search for notes">
+                    <button id="search-submit-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <div id="search-results">
+                
+            </div>
+        </div>
+        <!-- Notes search end -->
+    </main>
+    <script type="module" src="./scripts/app.js"></script>
 </body>
 </html>
