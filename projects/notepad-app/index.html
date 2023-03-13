@@ -4,10 +4,15 @@
 <head>
     <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./styles/style.css"/>
-    <link href="./fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="./fontawesome/css/brands.css" rel="stylesheet">
-    <link href="./fontawesome/css/solid.css" rel="stylesheet">
+    <meta name="description" content="Javascript Project - To Do List Application">
+    <meta name="og:title" content="Onah Victor | Projects | To Do List Application">
+    <meta name="og:description" content="Hi I'm Victor. I can create a website design that will give value to your business">
+    <meta name="og:image" content="/resources/images/notepad_img.webp">
+    <link href="../../fontawesome/css/fontawesome.css" rel="stylesheet">
+    <link href="../../fontawesome/css/brands.css" rel="stylesheet">
+    <link href="../../fontawesome/css/solid.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
     <title>Note Pad</title>
 </head>
 <body>
@@ -77,7 +82,7 @@
             </h3>
             <form id="note-title-input">
                 <p>Title: </p>
-                <input type="text" placeholder="Enter note title" id="new-note-title-input">
+                <input required="true" type="text" name="new-note-title-input" placeholder="Enter note title" id="new-note-title-input">
                 <input type="submit" value="Done" id="new-note-title-save-btn">
             </form>
             <textarea id="new-note-content"></textarea>

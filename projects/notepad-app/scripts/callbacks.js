@@ -1,6 +1,8 @@
 import date from './date.js'
 
 
+window.notes = []
+const notes = window.notes
 const get = document.getElementById.bind(document)
 const views = document.querySelectorAll('.view')
 class Note {
@@ -17,6 +19,11 @@ const showNoteEditor = () => {
         view.classList.add('hidden')
     })
     get('note-editor').classList.remove('hidden')
+    document.forms['note-title-input'].style.display = 'grid'
+    document.forms['note-title-input']['new-note-title-input'].focus()
+    get('new-note-title-input').value = ''
+    get('new-note-title').textContent = ''
+    get('new-note-content').value = ''
     toggleHeader()
 }
 const showNoteSearch = () => {
@@ -42,6 +49,18 @@ const showNoteViewer = () => {
 }
 const toggleHeader = () => {
     document.body.querySelector('header').classList.toggle('hidden')
+}
+const getNote = () => {
+    let title = get('new-note-title').textContent
+    let content = get('new-note-content').value
+    let note = createNote(title, content)
+    return note
+}
+const saveNote = () => {
+    let note = getNote()
+    note = new Note(note.title, note.content, note.id, note.dateCreated, note.edited)
+    notes.unshift(note)
+    displayNotes()
 }
 const createNote = (title, content) => {
     let dt = new Date()
@@ -90,12 +109,33 @@ const formatDate = (minutes, hours, amPm) => {
         }
     }
 }
+const displayNotes = () => {
+    let container = get('intro')
+    container.parentElement.style.display = 'block'
+    container.style.textAlign = 'left'
+    container.textContent = ''
+    for (let note of notes) {
+        let template = `
+        <a href="#note-viewer"><div id="${note.id}" class="note">
+            <h4 class="note-title">${note.title}</h4>
+            <p class="note-content-preview">${note.content.substring(0, 20)}...</p>
+            <small class="note-creation-time">${note.dateCreated}</small>
+        </div></a>
+        `
+        container.insertAdjacentHTML('beforeend', template)
+    }
+    console.log(container.outerHTML)
+}
+
+
+
 export default {
     Note,
+    notes,
     showNoteEditor,
     showNoteViewer,
     showNotesList,
     showNoteSearch,
     formatDate,
-    createNote
+    saveNote
 }
