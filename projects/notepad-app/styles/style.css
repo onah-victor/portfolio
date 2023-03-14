@@ -184,7 +184,7 @@ small{
     display: grid;
     grid-template-columns: auto 1fr;
 }
-#new-note-title{
+#new-note-title, #note-viewer-title{
     color: white;
     text-transform: capitalize;
     text-align: center
@@ -227,7 +227,7 @@ small{
     border: none;
     padding: 7px 10px;
 }
-textarea{
+textarea, #note-viewer-content{
     display: block;
     width: calc(100% - 20px);
     margin: 10px;
@@ -239,7 +239,7 @@ textarea{
     font-size: 16px;
     white-space: pre-wrap;
 }
-#note-save-btn{
+#note-save-btn, #save-edit-btn{
     display: block;
     margin: 30px auto;
     font-size: 20px;
@@ -257,7 +257,7 @@ textarea{
     background: #232323 !important;
     border: none !important;
 }
-#note-save-btn:active{
+#note-save-btn:active, #save-edit-btn{
     background: red;
     border: 2px solid white;
 }

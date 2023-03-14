@@ -1,8 +1,9 @@
 import date from './date.js'
 
 
+
 window.notes = []
-const notes = window.notes
+let notes = window.notes
 const get = document.getElementById.bind(document)
 const views = document.querySelectorAll('.view')
 class Note {
@@ -14,54 +15,37 @@ class Note {
         this.edited = edited
     }
 }
-const showNoteEditor = () => {
-    views.forEach(view => {
-        view.classList.add('hidden')
-    })
-    get('note-editor').classList.remove('hidden')
-    document.forms['note-title-input'].style.display = 'grid'
-    document.forms['note-title-input']['new-note-title-input'].focus()
-    get('new-note-title-input').value = ''
-    get('new-note-title').textContent = ''
-    get('new-note-content').value = ''
-    toggleHeader()
-}
-const showNoteSearch = () => {
-    views.forEach(view => {
-        view.classList.add('hidden')
-    })
-    get('note-search').classList.remove('hidden')
-    toggleHeader()
-}
-const showNotesList = () => {
-    views.forEach(view => {
-        view.classList.add('hidden')
-    })
-    get('notes-list').classList.remove('hidden')
-    document.body.querySelector('header').classList.remove('hidden')
-}
-const showNoteViewer = () => {
-    views.forEach(view => {
-        view.classList.add('hidden')
-    })
-    get('note-viewer').classList.remove('hidden')
-    toggleHeader()
-}
-const toggleHeader = () => {
-    document.body.querySelector('header').classList.toggle('hidden')
-}
+
 const getNote = () => {
     let title = get('new-note-title').textContent
     let content = get('new-note-content').value
     let note = createNote(title, content)
     return note
 }
+
 const saveNote = () => {
     let note = getNote()
     note = new Note(note.title, note.content, note.id, note.dateCreated, note.edited)
     notes.unshift(note)
     displayNotes()
 }
+
+const saveEditedNote = event => {
+    let noteId = event.currentTarget.dataset.id
+    for (let note of notes) {
+        if (note.id == noteId) {
+            let newTitle, newContent
+            newTitle = get('new-note-title').textContent
+            newContent = document.querySelector('textarea').value
+            note.title = newTitle
+            note.content = newContent
+        }
+    }
+    history.back()
+    displayNotes()
+    alert('Note updated successfully')
+}
+
 const createNote = (title, content) => {
     let dt = new Date()
     let monthDay, day, minutes, hours, year, month, amPm, id, edited
@@ -74,7 +58,7 @@ const createNote = (title, content) => {
     amPm = 'AM'
     id = Math.floor(Math.random() * dt.getTime() * Math.random() * 15)
     edited = false
-    let formatedDate = formatDate(minutes, hours, amPm)
+    let formatedDate = date.formatDate(minutes, hours, amPm)
     let dateCreated = `Created on ${day} ${month} ${monthDay}, ${year} at ${formatedDate.hours}:${formatedDate.minutes} ${formatedDate.amPm}`
     return {
         title,
@@ -84,31 +68,7 @@ const createNote = (title, content) => {
         edited
     }
 }
-const formatDate = (minutes, hours, amPm) => {
-    if (minutes && hours && amPm) {
-        switch (true) {
-            case (hours < 10):
-                hours = '0'+hours
-                break
-            case (hours > 12):
-                hours = hours - 12
-                amPm = 'PM'
-                break
-            case (hours == 0):
-                hours = 12
-                break
-            default:
-                hours = hours
-                amPm = amPm
-        }
-        if (minutes < 10) minutes = '0'+minutes
-        return {
-            minutes,
-            hours,
-            amPm
-        }
-    }
-}
+
 const displayNotes = () => {
     let container = get('intro')
     container.parentElement.style.display = 'block'
@@ -116,7 +76,7 @@ const displayNotes = () => {
     container.textContent = ''
     for (let note of notes) {
         let template = `
-        <a href="#note-viewer"><div id="${note.id}" class="note">
+        <a href="#note-viewer"><div onclick="viewNote(event)" id="${note.id}" class="note">
             <h4 class="note-title">${note.title}</h4>
             <p class="note-content-preview">${note.content.substring(0, 20)}...</p>
             <small class="note-creation-time">${note.dateCreated}</small>
@@ -124,18 +84,61 @@ const displayNotes = () => {
         `
         container.insertAdjacentHTML('beforeend', template)
     }
-    console.log(container.outerHTML)
 }
 
+const createNewNote = () => {
+    let noteTitle = get('new-note-title').textContent
+    if (noteTitle != '') {
+        saveNote()
+        history.back()
+    } else {
+        history.back()
+    }
+}
+const showNoteEditor = () => {
+    for (let view of views) {
+        view.classList.add('hidden')
+    }
+    get('note-editor').classList.remove('hidden')
+}
+const editNote = () => {
+    let noteId = get('note-viewer-title').dataset.id
+    for (let note of notes) {
+        if (noteId == note.id) {
+            get('new-note-title').textContent = note.title
+            document.querySelector('textarea').value = note.content
+            let saveEditBtn = get('save-edit-btn')
+            saveEditBtn.style.display = 'block'
+            saveEditBtn.dataset.id = noteId
+            get('note-save-btn').style.display = 'none'
+            showNoteEditor()
+        }
+    }
+}
+const deleteNote = () => {
+    let confirmation = confirm('Are you sure you want to delete this note?')
+    if (confirmation) {
+        let noteId = get('note-viewer-title').dataset.id
+        notes = notes.filter(note => {
+            if (note.id != noteId) {
+                return note
+            }
+        })
+    }
+    displayNotes()
+    history.back()
+}
 
 
 export default {
     Note,
     notes,
-    showNoteEditor,
-    showNoteViewer,
-    showNotesList,
-    showNoteSearch,
-    formatDate,
+    getNote,
+    createNote,
+    createNewNote,
+    displayNotes,
+    saveEditedNote,
+    editNote,
+    deleteNote,
     saveNote
 }

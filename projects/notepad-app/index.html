@@ -56,8 +56,8 @@
                     Note Viewer
                 </h3>
                 <div id="menu-icons">
-                    <i title="Edit note" class="fa fa-edit"></i>
-                    <i title="Delete note" class="fa fa-trash"></i>
+                    <i title="Edit note" id="edit-btn" class="fa fa-edit"></i>
+                    <i title="Delete note" id="delete-btn" class="fa fa-trash"></i>
                 </div>
             </div>
             <h3 id="note-viewer-title" data-id="">
@@ -87,6 +87,7 @@
             </form>
             <textarea id="new-note-content"></textarea>
             <button id="note-save-btn">Done</button>
+            <button style="display: none" data-id="" id="save-edit-btn">Done</button>
         </div>
         <!-- Note editor end -->
         
@@ -107,6 +108,7 @@
         </div>
         <!-- Notes search end -->
     </main>
+    <script src="./scripts/noteViewer.js"></script>
     <script type="module" src="./scripts/app.js"></script>
 </body>
 </html>
